@@ -1,0 +1,11 @@
+apiVersion: v2
+name: lsc-wsd
+description: LSC labolatory 6 web server
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+  - name: nfs-server-provisioner
+    version: "*"
+    alias: nfsprovisioner
+    condition: nfsprovisioner.enabled

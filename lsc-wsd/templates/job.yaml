@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lsc-wsd-job
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      volumes:
+        - name: web-content-job
+          persistentVolumeClaim:
+            claimName: lsc-wsd-pvc
+      containers:
+        - name: content-creator
+          image: "{{ .Values.contentJob.image.repository }}:{{ .Values.contentJob.image.tag }}"
+          command: ["/bin/sh", "-c"]
+          args:
+            - echo {{ .Values.contentJob.content | squote }} > {{ .Values.contentJob.mountPath }}/index.html
+          volumeMounts:
+            - name: web-content-job
+              mountPath: {{ .Values.contentJob.mountPath }}
+      restartPolicy: Never

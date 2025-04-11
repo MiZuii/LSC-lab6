@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lsc-wsd-pvc
+spec:
+  storageClassName: {{ .Values.nfsprovisioner.storageClass.name }}
+  accessModes:
+    {{- toYaml .Values.pvc.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.pvc.size }}
