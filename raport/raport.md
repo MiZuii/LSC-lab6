@@ -9,7 +9,7 @@ numbersections: true
 
 # Results
 
-After deploying the application according to steps provided in *README.md* the result is a working nginx deployment with a load balancer service. The exposed service, list of pods and the web page can be seen on below figures.
+After deploying the application according to steps provided in *README.md* the result is a working nginx deployment with a load balancer service. The exposed service, list of pods and the web page can be seen on below figures. The source code can be found here https://github.com/MiZuii/LSC-lab6#
 
 ![The application page](created_web_page.png)
 
